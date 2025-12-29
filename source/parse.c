@@ -97,6 +97,7 @@ extern char *GetNetsplitServer _((char *, char *));
 extern int  CheckChannel _((char *, char *));
 extern int  DecryptMessage _((char *, char *));
 extern int  IsIrcNetOperChannel _((char *));
+extern int  GrabURL _((char *, char *, size_t, char *, char *, char *, int));
 extern int  CompareAddr _((List *, char *));
 extern int  AddLast _((List *, List *));
 extern char *TimeStamp _((int));

@@ -72,7 +72,9 @@ extern	u_char	*recv_nick;
 	void	command_completion _((u_int, char *));
 	void	e_quit _((char *, char *, char *));
 	int	check_wait_command _((char *));
-	
+	int	BuildColor _((char *, char *, int));
+	void	PopLine _((void));
+
 #define AWAY_ONE 0
 #define AWAY_ALL 1
 

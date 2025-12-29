@@ -173,7 +173,7 @@ is_crypted(nick)
 /*ARGSUSED*/
 void
 encrypt_cmd(command, args, subargs)
-	u_char	*command,
+	char	*command,
 		*args,
 		*subargs;
 {

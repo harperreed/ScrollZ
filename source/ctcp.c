@@ -1434,7 +1434,7 @@ do_atmosphere(ctcp, from, to, cmd)
 #ifdef HAVE_ICONV_H
         if (get_int_var(HIGH_ASCII_VAR)) thing = "\342\210\236";
 #else
-        if (get_int_var(HIGH_ASCII_VAR)) thing = "ì";
+        if (get_int_var(HIGH_ASCII_VAR)) thing = "ï¿½";
 #endif /* HAVE_ICONV_H */
         else thing = "*";
         if (Stamp == 2) func = (Window *(*)()) say;
@@ -1629,8 +1629,8 @@ do_utc(ctcp, from, to, args)
 		*to,
 		*args;
 {
-	time_t	tm = time(NULL),
-		curtime;
+	time_t	tm = time(NULL);
+	char	*curtime;
 	char	*date = NULL;
 
 	if (!args || !*args)

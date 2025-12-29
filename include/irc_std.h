@@ -210,7 +210,7 @@ sigfunc *my_signal _((int, sigfunc *, int));
 
 #define IS_ABSOLUTE_PATH(file) ((file)[0] == '/')
 
-#if !defined(SYS_ERRLIST_DECLARED)
+#if !defined(SYS_ERRLIST_DECLARED) && !defined(__APPLE__)
 extern	char	*sys_errlist[];
 extern	int	sys_nerr;
 #endif

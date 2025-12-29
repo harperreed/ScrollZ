@@ -88,6 +88,7 @@ extern void NotChanOp _((char *));
 extern void NoWindowChannel _((void));
 extern void PrintUsage _((char *));
 extern void EncryptString _((char *, char *, char *, int, int, int));
+extern int  DecryptString _((char *, char *, char *, int, int));
 extern void UpdateFloodUsers _((void));
 extern int  AddLast _((List *, List *));
 extern int  CheckPrivs _((char *, char *));
@@ -2463,7 +2464,7 @@ void InitVars() {
     malloc_strcpy(&DefaultSignOff,"we need a default signoff message");
     malloc_strcpy(&DefaultSetAway,"mmm.. something better");
     malloc_strcpy(&DefaultSetBack,"are you there?");
-    malloc_strcpy(&ScrollZstr,"[1m[30m·[0m[37m·[1m[37m·[0m[37m");
+    malloc_strcpy(&ScrollZstr,"[1m[30mï¿½[0m[37mï¿½[1m[37mï¿½[0m[37m");
     malloc_strcpy(&DefaultK,"you == chump");
     malloc_strcpy(&DefaultBK,"you == bison");
     malloc_strcpy(&DefaultBKI,"you == bison");

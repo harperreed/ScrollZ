@@ -9,6 +9,7 @@
 #include "ircaux.h"
 #include "server.h"
 #include "trace.h"
+#include "output.h"
 
 #ifdef SZTRACE
 extern char *OpenCreateFile(char *, int);

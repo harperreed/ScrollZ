@@ -159,6 +159,8 @@ extern char *OpenCreateFile _((char *, int));
 extern void CreateBan _((char *, char *, char *));
 extern void StripAnsi _((char *, char *, int));
 extern void BuildPrivs _((struct friends *, char *));
+extern int  EncryptMessage _((char *, char *));
+extern int  DecryptMessage _((char *, char *));
 #ifdef WANTANSI
 extern int  CountAnsi _((char *, int));
 #endif

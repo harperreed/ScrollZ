@@ -156,6 +156,8 @@ extern void ChannelLogSave _((char *, ChannelList *));
 extern int  EncryptString _((char *, char *, char *, int, int, int));
 extern int  DecryptString _((char *, char *, char *, int, int));
 extern int  RateLimitJoin _((int));
+int InitColor _((char **, char **, int, int));
+int BuildColorNew _((char *, char *, int));
 
 #ifdef CELE
 /*extern void Cstatusupd _((int, int));
@@ -1314,8 +1316,8 @@ char *channel;
 #ifdef GENX
     if (!my_stricmp(word,"is")) word="address";
     else word="was";
-    put_it("%sÚÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ",banner);
-    snprintf(tmpbuf2,sizeof(tmpbuf2), "%s³ %s%8s%s ³ %s%s%s%s!%s%s%s%s%s@%s%s%s%s",banner,
+    put_it("%sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",banner);
+    snprintf(tmpbuf2,sizeof(tmpbuf2), "%sï¿½ %s%8s%s ï¿½ %s%s%s%s!%s%s%s%s%s@%s%s%s%s",banner,
             CmdsColors[COLWHOIS].color5,word,Colors[COLOFF],
             CmdsColors[COLWHOIS].color1,nick,Colors[COLOFF],
             CmdsColors[COLMISC].color1,Colors[COLOFF],
@@ -1323,10 +1325,10 @@ char *channel;
  	    CmdsColors[COLMISC].color1,Colors[COLOFF],
             CmdsColors[COLWHOIS].color2,host,Colors[COLOFF]);
     put_it("%s", tmpbuf2);
-    put_it("%s³ %sirc name%s ³ %s%s",banner,
+    put_it("%sï¿½ %sirc name%s ï¿½ %s%s",banner,
            CmdsColors[COLWHOIS].color5,Colors[COLOFF],name,Colors[COLOFF]);
     if (tmpfriend && tmpfriend->privs) {
-        snprintf(tmpbuf1,sizeof(tmpbuf1),"%s³   %sfriend%s ³ filt: %s%s%s",banner,
+        snprintf(tmpbuf1,sizeof(tmpbuf1),"%sï¿½   %sfriend%s ï¿½ filt: %s%s%s",banner,
                CmdsColors[COLWHOIS].color5,Colors[COLOFF],
                CmdsColors[COLWHOIS].color4,tmpfriend->userhost,Colors[COLOFF]);
         snprintf(tmpbuf2,sizeof(tmpbuf2),"  acs: %s",CmdsColors[COLWHOIS].color4);
@@ -1402,7 +1404,7 @@ char *channels;
     StripAnsi(tmpbuf1, tmpbuf2, 4);
 #ifdef WANTANSI
 #ifdef GENX
-    put_it("%s³ %schannels%s ³ %s%s%s", banner,
+    put_it("%sï¿½ %schannels%s ï¿½ %s%s%s", banner,
            CmdsColors[COLWHOIS].color5, Colors[COLOFF],
            CmdsColors[COLWHOIS].color3, tmpbuf2, Colors[COLOFF]);
 #elif defined(CELECOSM)
@@ -1439,10 +1441,10 @@ char *line;
         snprintf(tmpbuf,sizeof(tmpbuf),"%c:%c%s%s%s",bold,bold,
                 CmdsColors[COLWHOIS].color4,uplink,Colors[COLOFF]);
     }
-    if (uplink) put_it("%s³   %sserver%s ³ %s%s%s UpLink%s",banner,
+    if (uplink) put_it("%sï¿½   %sserver%s ï¿½ %s%s%s UpLink%s",banner,
                        CmdsColors[COLWHOIS].color5,Colors[COLOFF],
                        CmdsColors[COLWHOIS].color3,server,Colors[COLOFF],tmpbuf);
-    else put_it("%s³   %sserver%s ³ %s%s%s",banner,
+    else put_it("%sï¿½   %sserver%s ï¿½ %s%s%s",banner,
                 CmdsColors[COLWHOIS].color5,Colors[COLOFF],
                 CmdsColors[COLWHOIS].color3,server,Colors[COLOFF]);
 #elif defined(CELECOSM)
@@ -1783,7 +1785,7 @@ char *distance;
             get_int_var(HIGH_ASCII_VAR)?"\342\224\202":"|",Colors[COLOFF]);
 #else
     snprintf(tmpbuf1,sizeof(tmpbuf1),"%s%c%s",CmdsColors[COLLINKS].color5,
-            get_int_var(HIGH_ASCII_VAR)?'³':'|',Colors[COLOFF]);
+            get_int_var(HIGH_ASCII_VAR)?'ï¿½':'|',Colors[COLOFF]);
 #endif /* HAVE_ICONV_H */
     LinksNumber++;
     snprintf(tmpbuf2,sizeof(tmpbuf2),"%s%s%3d%s %s %s%s%26s%s%s",
@@ -2422,7 +2424,7 @@ int  iscrypted;
 #ifdef HAVE_ICONV_H
     if (get_int_var(HIGH_ASCII_VAR)) thing="\342\211\241";
 #else
-    if (get_int_var(HIGH_ASCII_VAR)) thing="ð";
+    if (get_int_var(HIGH_ASCII_VAR)) thing="ï¿½";
 #endif
     else thing="=";
     snprintf(thingleft,sizeof(thingleft),"%s%s",iscrypted?"*":"",thing);
@@ -2468,7 +2470,7 @@ int  iscrypted;
 #ifdef HAVE_ICONV_H
     if (get_int_var(HIGH_ASCII_VAR)) thing="\342\211\241";
 #else
-    if (get_int_var(HIGH_ASCII_VAR)) thing="ð";
+    if (get_int_var(HIGH_ASCII_VAR)) thing="ï¿½";
 #endif /* HAVE_ICONV_H */
     else thing="=";
     snprintf(thingleft,sizeof(thingleft),"%s%s",iscrypted?"*":"",thing);
@@ -3184,13 +3186,13 @@ void PrintLinksHead() {
                 CmdsColors[COLLINKS].color2,Colors[COLOFF],
                 CmdsColors[COLLINKS].color5,Colors[COLOFF]);
 #else
-        snprintf(tmpbuf1,sizeof(tmpbuf1),"%sÚ%sú%sNo%sú%s¿ ÚÄÄÄÄÄÄÄÄÄ%sú%sServer%sú%sÄÄÄÄÄÄÄÄÄ¿%s",
+        snprintf(tmpbuf1,sizeof(tmpbuf1),"%sï¿½%sï¿½%sNo%sï¿½%sï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½%sï¿½%sServer%sï¿½%sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿%s",
                 CmdsColors[COLLINKS].color5,Colors[COLOFF],
                 CmdsColors[COLLINKS].color1,Colors[COLOFF],
                 CmdsColors[COLLINKS].color5,Colors[COLOFF],
                 CmdsColors[COLLINKS].color1,Colors[COLOFF],
                 CmdsColors[COLLINKS].color5,Colors[COLOFF]);
-        snprintf(tmpbuf2,sizeof(tmpbuf2),"%sÚ%sú%sDs%sú%s¿   ÚÄÄÄÄÄÄÄÄ%sú%sUplink%sú%sÄÄÄÄÄÄÄÄÄ¿%s",
+        snprintf(tmpbuf2,sizeof(tmpbuf2),"%sï¿½%sï¿½%sDs%sï¿½%sï¿½   ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½%sï¿½%sUplink%sï¿½%sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿%s",
                 CmdsColors[COLLINKS].color5,Colors[COLOFF],
                 CmdsColors[COLLINKS].color3,Colors[COLOFF],
                 CmdsColors[COLLINKS].color5,Colors[COLOFF],
@@ -3997,7 +3999,7 @@ void InitKeysColors() {
     InitColor(&CmdsColors[COLNICK].color5_str, &CmdsColors[COLNICK].color5, COLPURPLE, 1);
 
     /* /ME */
-    /* * or ì */
+    /* * or ï¿½ */
     InitColor(&CmdsColors[COLME].color1_str, &CmdsColors[COLME].color1, COLBOLD, 0);
     InitColor(&CmdsColors[COLME].color1_str, &CmdsColors[COLME].color1, COLWHITE, 1);
     /* Your nick */

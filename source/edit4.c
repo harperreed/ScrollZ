@@ -163,6 +163,7 @@ extern char *TimeStamp _((int));
 extern struct autobankicks *FindShit _((char *, char *));
 extern void ChannelLogReport _((char *, ChannelList *));
 extern void ChannelLogSave _((char *, ChannelList *));
+extern void SendNotification _((int, char *));
 #ifdef HAVE_GMP
 extern void FishAddRemoteKey _((char *, char *));
 #endif
@@ -217,7 +218,7 @@ int  iscrypted;
 #ifdef HAVE_ICONV_H
     if (get_int_var(HIGH_ASCII_VAR)) thing = "\342\210\231";
 #else
-    if (get_int_var(HIGH_ASCII_VAR)) thing = "ù";
+    if (get_int_var(HIGH_ASCII_VAR)) thing = "ï¿½";
 #endif /* HAVE_ICONV_H */
     else thing = "*";
     if (URLCatch) {

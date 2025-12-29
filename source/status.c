@@ -62,6 +62,7 @@ extern int vt100Decode _((char));
 extern int  CheckChannel _((char *, char *));
 extern void StripAnsi _((char *, char *, int));
 extern int  CheckServer _((int));
+extern int  is_server_ok _((int));
 
 extern time_t  start_time;
 /****************************************************************************/

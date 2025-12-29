@@ -642,6 +642,7 @@ struct colorstr CmdsColors[NUMCMDCOLORS];
 RETSIGTYPE
 /**************************** PATCHED by Flier ******************************/
 irc_exit(quit)
+int quit;
 /****************************************************************************/
 {
 	do_hook(EXIT_LIST, "Exiting");

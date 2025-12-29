@@ -76,6 +76,7 @@ extern void UpdateChanLogFName _((ChannelList *));
 extern void ChannelLogReport _((char *, ChannelList *));
 extern void ChannelLogSave _((char *, ChannelList *));
 extern int  RateLimitJoin _((int));
+extern int  IsValidWindow _((int, Window *));
 
 extern NickList *tabnickcompl;
 /****************************************************************************/

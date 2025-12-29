@@ -46,6 +46,8 @@
 int	connect_to_unix _((int, char *));
 #endif /* HAVE_SYS_UN_H */
 
+int	is_server_ok _((int));
+
 #include "server.h"
 #include "screen.h"
 #include "ircaux.h"

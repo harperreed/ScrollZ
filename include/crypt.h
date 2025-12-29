@@ -62,7 +62,7 @@ struct crypt_key
  * function interfaces we have
  */
 u_char		*crypt_msg _((u_char *, crypt_key *, int));
-void		encrypt_cmd _((u_char *, u_char *, u_char *));
+void		encrypt_cmd _((char *, char *, char *));
 crypt_key	*is_crypted _((u_char *));
 
 /*

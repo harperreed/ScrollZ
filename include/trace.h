@@ -25,6 +25,7 @@ typedef struct {
     char *area;
 } TraceArea;
 
+void Trace _((long, char *, ...));
 void TraceServerInfo _((int indent, int fullinfo));
 void TraceChannelInfo _((int indent, ChannelList *channels));
 void TraceNickListInfo _((int indent, NickList *nicks));

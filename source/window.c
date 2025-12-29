@@ -58,6 +58,7 @@
 /**************************** PATCHED by Flier ******************************/
 #include "myvars.h"
 #include "trace.h"
+#include "whowas.h"
 
 #ifdef SZ32
 #include <windows.h>

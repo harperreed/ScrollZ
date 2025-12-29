@@ -20,7 +20,7 @@
 	void	digraph _((char *, char *, char *));
 	void	save_digraphs _((FILE *));
 
-#ifndef HAVE_ICONV_OPEN
+#if !defined(HAVE_ICONV_OPEN) && !defined(HAVE_ICONV_H)
 	typedef void *iconv_t;
 #endif
 
