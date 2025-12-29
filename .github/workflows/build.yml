@@ -6,7 +6,7 @@ name: Build
 on:
   push:
     branches: [master]
-    tags: ['v*', 'scrollz-*']
+    tags: ['v*', 'scrollz-*', 'sz*']
   pull_request:
     branches: [master]
 
